@@ -6,7 +6,9 @@
 
 body {
   min-height: 100vh;
-  background-color: #fff0f3;
+  /* Mudança para um fundo escuro moderno */
+  background-color: #0f0c1b; 
+  background-image: radial-gradient(circle at center, #1a153a 0%, #0f0c1b 100%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -23,13 +25,13 @@ body {
   max-width: 520px;
 }
 
-/* ========= ENVELOPE ========= */
+/* ========= ENVELOPE (Estilo Dark/Neon) ========= */
 
 #envelope {
   width: 320px;
   height: 200px;
-  background-color: #f9e4ea;
-  border: 2px solid #e8a0b0;
+  background-color: #16122c;
+  border: 2px solid #6355a4;
   border-radius: 8px;
   display: flex;
   justify-content: center;
@@ -42,7 +44,9 @@ body {
 
 #envelope:hover {
   transform: scale(1.06) translateY(-4px);
-  box-shadow: 0 12px 32px rgba(210, 80, 120, 0.2);
+  /* Brilho neon sutil no hover */
+  box-shadow: 0 12px 32px rgba(138, 92, 246, 0.25);
+  border-color: #8b5cf6;
 }
 
 #envelope:active {
@@ -55,7 +59,7 @@ body {
   width: 0;
   border-left: 160px solid transparent;
   border-right: 160px solid transparent;
-  border-top: 90px solid #f0b8c8;
+  border-top: 90px solid #2e255e;
 }
 
 .aba-esquerda {
@@ -64,7 +68,7 @@ body {
   width: 0;
   border-top: 100px solid transparent;
   border-bottom: 100px solid transparent;
-  border-left: 160px solid #f2c4d0;
+  border-left: 160px solid #251e4f;
 }
 
 .aba-direita {
@@ -73,7 +77,7 @@ body {
   width: 0;
   border-top: 100px solid transparent;
   border-bottom: 100px solid transparent;
-  border-right: 160px solid #f2c4d0;
+  border-right: 160px solid #251e4f;
 }
 
 .aba-baixo {
@@ -82,13 +86,14 @@ body {
   width: 0;
   border-left: 160px solid transparent;
   border-right: 160px solid transparent;
-  border-bottom: 100px solid #f5cdd6;
+  border-bottom: 100px solid #1c163a;
 }
 
 .emoji-coracao {
   font-size: 36px;
   position: relative;
   z-index: 2;
+  filter: drop-shadow(0 0 8px #8b5cf6);
   animation: pulsar 1.6s ease-in-out infinite;
 }
 
@@ -101,20 +106,22 @@ body {
   position: absolute;
   bottom: 10px;
   font-size: 11px;
-  color: #c0607a;
+  color: #a78bfa;
   z-index: 2;
   letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-/* ========= CARTA ========= */
+/* ========= CARTA (Estilo Cyber-Minimalista) ========= */
 
 #carta {
   display: none;
   width: 100%;
-  background-color: #fff8f9;
-  border: 1px solid #f0b8c8;
+  background-color: #120e25;
+  border: 1px solid #3c3175;
   border-radius: 16px;
   padding: 2.5rem 2rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
   animation: subirCarta 0.7s ease forwards;
 }
 
@@ -127,13 +134,13 @@ body {
   text-align: center;
   font-size: 18px;
   letter-spacing: 8px;
-  color: #e07090;
+  color: #8b5cf6;
   margin-bottom: 1.4rem;
 }
 
 .para-label {
   font-size: 11px;
-  color: #c0607a;
+  color: #94a3b8;
   text-transform: uppercase;
   letter-spacing: 0.14em;
   margin-bottom: 0.25rem;
@@ -143,17 +150,17 @@ body {
   font-family: 'Playfair Display', serif;
   font-size: 26px;
   font-style: italic;
-  color: #b0304e;
+  color: #f1f5f9;
   margin-bottom: 1.5rem;
   padding-bottom: 1rem;
-  border-bottom: 1px solid #f0b8c8;
+  border-bottom: 1px solid #3c3175;
 }
 
 .paragrafo {
   font-family: 'Playfair Display', serif;
   font-size: 15px;
   line-height: 1.95;
-  color: #4a2030;
+  color: #cbd5e1;
   margin-bottom: 1.2rem;
 }
 
@@ -161,7 +168,7 @@ body {
   font-family: 'Playfair Display', serif;
   font-size: 17px;
   font-weight: 600;
-  color: #c0385a;
+  color: #a78bfa;
   text-align: center;
   margin: 1.4rem 0;
 }
@@ -170,7 +177,7 @@ body {
   text-align: right;
   font-family: 'Playfair Display', serif;
   font-style: italic;
-  color: #b03458;
+  color: #94a3b8;
   font-size: 14px;
   margin-top: 1rem;
 }
@@ -179,7 +186,7 @@ body {
   text-align: center;
   font-size: 16px;
   letter-spacing: 8px;
-  color: #e07090;
+  color: #8b5cf6;
   margin-top: 1.2rem;
 }
 
@@ -201,8 +208,8 @@ body {
 #player {
   display: none;
   width: 100%;
-  background-color: #fce8ed;
-  border: 1px solid #f0b8c8;
+  background-color: #16122c;
+  border: 1px solid #3c3175;
   border-radius: 10px;
   padding: 0.8rem 1.2rem;
   align-items: center;
@@ -217,7 +224,7 @@ body {
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background-color: #d94e72;
+  background-color: #8b5cf6;
   color: white;
   border: none;
   cursor: pointer;
@@ -230,8 +237,9 @@ body {
 }
 
 #btn-play:hover {
-  background-color: #b83059;
+  background-color: #7c3aed;
   transform: scale(1.1);
+  box-shadow: 0 0 12px rgba(139, 92, 246, 0.4);
 }
 
 #btn-play:active {
@@ -247,7 +255,7 @@ body {
 
 .player-titulo {
   font-size: 13px;
-  color: #7a2840;
+  color: #f1f5f9;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -255,7 +263,7 @@ body {
 
 .player-sub {
   font-size: 11px;
-  color: #b06080;
+  color: #94a3b8;
   margin-top: 2px;
 }
 
@@ -269,7 +277,7 @@ body {
 
 .onda {
   width: 3px;
-  background-color: #d94e72;
+  background-color: #8b5cf6;
   border-radius: 2px;
   transition: height 0.2s;
 }
@@ -318,39 +326,5 @@ body {
     border-left-width: 140px;
     border-right-width: 140px;
     border-top-width: 78px;
-  }
-
-  .aba-esquerda {
-    border-left-width: 140px;
-    border-top-width: 87px;
-    border-bottom-width: 87px;
-  }
-
-  .aba-direita {
-    border-right-width: 140px;
-    border-top-width: 87px;
-    border-bottom-width: 87px;
-  }
-
-  .aba-baixo {
-    border-left-width: 140px;
-    border-right-width: 140px;
-    border-bottom-width: 87px;
-  }
-
-  #carta {
-    padding: 1.8rem 1.2rem;
-  }
-
-  .para-nome {
-    font-size: 22px;
-  }
-
-  .paragrafo {
-    font-size: 14px;
-  }
-
-  .destaque {
-    font-size: 15px;
   }
 }

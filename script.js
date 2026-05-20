@@ -2,12 +2,23 @@ const envelope = document.getElementById('envelope')
 const carta = document.getElementById('carta')
 const player = document.getElementById('player')
 const audio = new Audio('musica.mp3')
+audio.preload = 'auto' // Garante que o arquivo local seja pré-carregado
 
 envelope.addEventListener('click', function () {
   envelope.style.display = 'none'
   carta.style.display = 'block'
   player.classList.add('visivel')
-  soltarCoracoes()
+  soltarParticulas() 
+
+  // AUTOPLAY: Inicia o áudio local assim que o usuário clica para abrir o envelope
+  audio.play().then(() => {
+    const btn = document.getElementById('btn-play')
+    const ondas = document.querySelectorAll('.onda')
+    btn.textContent = '⏸'
+    ondas.forEach(function (o) { o.classList.add('tocando') })
+  }).catch(error => {
+    console.log("O autoplay foi bloqueado pelo navegador ou o arquivo não foi encontrado:", error)
+  })
 
   const paragrafos = document.querySelectorAll('.paragrafo-animado')
   paragrafos.forEach(function (paragrafo) {
@@ -33,55 +44,56 @@ function toggleMusica() {
   }
 }
 
-function soltarCoracoes() {
+// Efeito de Neve Lofi Minimalista para o portfólio
+function soltarParticulas() {
   const canvas = document.getElementById('corações')
   const ctx = canvas.getContext('2d')
 
   canvas.width = window.innerWidth
   canvas.height = window.innerHeight
 
-  const coracoes = []
-  const emojis = ['❤', '🌸', '💕', '♡']
+  const flocos = []
 
-  function criarCoracao() {
-    coracoes.push({
+  // Cria os flocos de neve iniciais
+  function criarFloco() {
+    flocos.push({
       x: Math.random() * canvas.width,
-      y: canvas.height + 20,
-      tamanho: 14 + Math.random() * 18,
-      velocidade: 1.2 + Math.random() * 1.8,
-      balanco: Math.random() * 2 - 1,
-      opacidade: 0.7 + Math.random() * 0.3,
-      emoji: emojis[Math.floor(Math.random() * emojis.length)],
-      drift: 0,
+      y: -10, // Começa no topo da tela e cai
+      raio: 1 + Math.random() * 3, // Tamanhos variados para dar profundidade
+      densidade: Math.random() * 1,
+      velocidade: 0.8 + Math.random() * 1.5, // Velocidade suave de queda
+      opacidade: 0.4 + Math.random() * 0.6
     })
   }
 
-  let intervalo = setInterval(criarCoracao, 130)
+  // Gera flocos continuamente por 5 segundos após abrir
+  let intervalo = setInterval(criarFloco, 50)
   setTimeout(function () {
     clearInterval(intervalo)
     intervalo = null
-  }, 3000)
+  }, 5000)
 
   function animar() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-    coracoes.forEach(function (c) {
-      c.y -= c.velocidade
-      c.drift += 0.03
-      c.x += Math.sin(c.drift) * c.balanco
-      ctx.globalAlpha = c.opacidade
-      ctx.font = c.tamanho + 'px serif'
-      ctx.fillText(c.emoji, c.x, c.y)
+    flocos.forEach(function (f) {
+      f.y += f.velocidade; // Faz cair ao invés de subir
+      f.x += Math.sin(f.y / 30) * 0.5; // Balanço suave para os lados
+
+      ctx.beginPath()
+      ctx.arc(f.x, f.y, f.raio, 0, Math.PI * 2, true)
+      ctx.fillStyle = "rgba(255, 255, 255, " + f.opacidade + ")" // Flocos brancos translúcidos
+      ctx.fill()
     })
 
-    ctx.globalAlpha = 1
-
-    for (let i = coracoes.length - 1; i >= 0; i--) {
-      if (coracoes[i].y < -30) coracoes.splice(i, 1)
+    // Remove os flocos que passarem do fundo da tela
+    for (let i = flocos.length - 1; i >= 0; i--) {
+      if (flocos[i].y > canvas.height + 10) flocos.splice(i, 1)
     }
 
-    if (coracoes.length > 0 || intervalo) requestAnimationFrame(animar)
+    if (flocos.length > 0 || intervalo) requestAnimationFrame(animar)
   }
 
   animar()
 }
+
